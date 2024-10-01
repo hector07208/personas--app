@@ -83,8 +83,16 @@ class ComunaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy( $id)
     {
+        $comuna = comuna::find($id);
+        $comuna->delete();
+        $comuna =DB::table('tb_comuna')
+        ->join('tb_municipio','tb_comuna.muni_codi', '=','tb_municipio.muni_codi')
+        ->select('tb_comuna.*',"tb_municipio.muni_nomb")
+        ->get();
+        return view('comuna.index', ['comunas'=> $comunas]);
+
         //
     }
 }
