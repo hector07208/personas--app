@@ -1,9 +1,10 @@
 <?php
-
-use App\Http\Controllers\ComunaController; // Make sure this line is present
+use App\Http\Controllers\comunaController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/comunas', [ComunaController::class, 'index']); // Corrected class name
+Route::get('/comunas',[ComunaController::class,'index'])->name('comunas.index');
+Route::post('/comunas',[ComunaController::class,'store'])->name('comunas.store');
+Route::get('/comunas/create',[ComunaController::class,'create'])->name('comunas.create');
